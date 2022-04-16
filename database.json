@@ -5,5 +5,12 @@
     "database": "storefront_backend_dev",
     "user": "store_user",
     "password": "password123"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "storefront_backend_test",
+    "user": "store_user",
+    "password": "password123"
   }
 }
