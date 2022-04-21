@@ -72,7 +72,8 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                     id: req.body.id,
                     product_id: req.body.product_id,
                     quantity: req.body.quantity,
-                    user_id: req.body.user_id
+                    user_id: req.body.user_id,
+                    status: req.body.status
                 };
                 return [4 /*yield*/, orderlist.create(order)];
             case 1:

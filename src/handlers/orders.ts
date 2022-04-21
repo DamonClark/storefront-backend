@@ -20,6 +20,7 @@ const create = async (req: Request, res: Response) => {
           product_id: req.body.product_id,
           quantity: req.body.quantity,
 					user_id: req.body.user_id,
+          status: req.body.status
       }
 
       const newOrder = await orderlist.create(order)

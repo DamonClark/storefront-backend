@@ -6,6 +6,7 @@ export type Order = {
 	product_id: number;
 	quantity: string;
 	user_id: number;
+  status: string;
 }
 
 export class OrderList {
@@ -43,7 +44,7 @@ export class OrderList {
 
   async create(o: Order): Promise<Order> {
     try {
-      const sql = 'INSERT INTO orders (quantity) VALUES($1) RETURNING *'
+      const sql = 'INSERT INTO orders (quantity, status) VALUES($1, $2) RETURNING *'
       // @ts-ignore
       const conn = await client.connect()
 
