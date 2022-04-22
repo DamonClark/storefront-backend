@@ -7,8 +7,16 @@ describe("Product Model", () => {
     expect(store.index).toBeDefined();
   });
 
+  it('should have an show method', () => {
+    expect(store.show).toBeDefined();
+  });
+
   it('should have a create method', () => {
     expect(store.create).toBeDefined();
+  });
+
+  it('should have a delete method', () => {
+    expect(store.delete).toBeDefined();
   });
 
   it('create method should add a product', async () => {

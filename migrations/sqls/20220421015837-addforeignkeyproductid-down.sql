@@ -1,1 +1,2 @@
-/* Replace with your SQL commands */
+ALTER TABLE orders
+DROP CONSTRAINT fk_orders_product;
