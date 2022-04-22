@@ -1,5 +1,6 @@
 // @ts-ignore
 import client from '../database'
+import bcrypt from 'bcrypt'
 
 export type User = {
 	id: number;
@@ -46,10 +47,15 @@ export class UserGroup {
       const sql = 'INSERT INTO users (first_name, last_name, password_digest) VALUES($1, $2, $3) RETURNING *'
       // @ts-ignore
       const conn = await client.connect()
+      const pepper = process.env.BCRYPT_PASSWORD; 
+      const saltRounds  = process.env.SALT_ROUNDS as string;
 
-      const result = await conn
-          .query(sql, [u.first_name, u.last_name, u.password_digest])
+      const hash = bcrypt.hashSync(
+        u.password_digest + pepper, 
+        parseInt(saltRounds)
+      );
 
+      const result = await conn.query(sql, [u.first_name, u.last_name, hash])
       const user = result.rows[0]
 
       conn.release()
@@ -60,21 +66,45 @@ export class UserGroup {
       }
   }
 
-  async delete(id: string): Promise<User> {
-      try {
-    const sql = 'DELETE FROM users WHERE id=($1)'
-    // @ts-ignore
+  async authenticate(username: string, password: string): Promise<User | null> {
+    let client: any;
     const conn = await client.connect()
+    const sql = 'SELECT password_digest FROM users WHERE username=($1)'
 
-    const result = await conn.query(sql, [id])
+    const result = await conn.query(sql, [username])
+    const pepper = process.env.BCRYPT_PASSWORD; 
 
-    const book = result.rows[0]
+    console.log(password+pepper)
 
-    conn.release()
+    if(result.rows.length) {
 
-    return book
-      } catch (err) {
-          throw new Error(`Could not delete user ${id}. Error: ${err}`)
+      const user = result.rows[0]
+
+      console.log(user)
+
+      if (bcrypt.compareSync(password+pepper, user.password_digest)) {
+        return user
       }
+    }
+
+    return null
+  }
+
+  async delete(id: string): Promise<User> {
+    try {
+        const sql = 'DELETE FROM users WHERE id=($1)'
+        // @ts-ignore
+        const conn = await client.connect()
+
+        const result = await conn.query(sql, [id])
+
+        const book = result.rows[0]
+
+        conn.release()
+
+        return book
+    } catch (err) {
+        throw new Error(`Could not delete user ${id}. Error: ${err}`)
+    }
   }
 }
