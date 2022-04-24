@@ -56,13 +56,21 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 # Project setup instructions
 ## how to setup and connect to the database
 Enter `psql` from terminal window
+
 Enter `CREATE DATABASE storefront_backend_dev` from terminal window
+
 Enter `CREATE USER myuser with encrypted password 'XXX';` with a username and password of your choice
+
 Enter `grant all privileges on database storefront_backend_dev to myuser;`
+
 Enter `CREATE DATABASE storefront_backend_test` from terminal window
+
 Enter `grant all privileges on database storefront_backend_test to myuser;` with your username
+
 Run `db-migrate up` from terminal
+
 Then create a `.env` file that contains your env variables including your username and password
+
 ```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=storefront_backend_dev
