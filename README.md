@@ -53,7 +53,7 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
-#Project setup instructions
+# Project setup instructions
 how to setup and connect to the database
 what ports the backend and database are running on
 package installation instructions
