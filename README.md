@@ -54,16 +54,23 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
 # Project setup instructions
+
+## package installation instructions
+
+Clone down the repository and run `npm install` in the main directory of project to get started.
+
+Then you can run `yarn watch` to start up the server on localhost:3000
+
 ## how to setup and connect to the database
 Enter `psql` from terminal window
 
-Enter `CREATE DATABASE storefront_backend_dev` from terminal window
+Enter `CREATE DATABASE storefront_backend_dev;` from terminal window
 
 Enter `CREATE USER myuser with encrypted password 'XXX';` with a username and password of your choice
 
 Enter `grant all privileges on database storefront_backend_dev to myuser;`
 
-Enter `CREATE DATABASE storefront_backend_test` from terminal window
+Enter `CREATE DATABASE storefront_backend_test;` from terminal window
 
 Enter `grant all privileges on database storefront_backend_test to myuser;` with your username
 
@@ -80,7 +87,4 @@ POSTGRES_PASSWORD=XXXX
 BCRYPT_PASSWORD=XXXX
 SALT_ROUNDS=10
 ENV=dev
-```
-## package installation instructions
-After cloning down the repository you must run `npm install` in the main directory of project.
-Then you can run `yarn watch` to start up the server on localhost:3000
+``
