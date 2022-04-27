@@ -30,16 +30,10 @@ const create = async (req: Request, res: Response) => {
   }
 }
 
-const destroy = async (req: Request, res: Response) => {
-  const deleted = await usergroup.delete(req.body.id)
-  res.json(deleted)
-}
-
 const userRoutes = (app: express.Application) => {
   app.get('/users', index)
   app.get('/users/:id', show)
   app.post('/users', create)
-  app.delete('/users', destroy)
 }
 
 export default userRoutes

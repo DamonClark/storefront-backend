@@ -15,10 +15,6 @@ describe("Product Model", () => {
     expect(store.create).toBeDefined();
   });
 
-  it('should have a delete method', () => {
-    expect(store.delete).toBeDefined();
-  });
-
   it('create method should add a product', async () => {
     const result = await store.create({
       id: 1,

@@ -60,22 +60,4 @@ export class OrderList {
           throw new Error(`Could not add new order ${o.quantity}. Error: ${err}`)
       }
   }
-
-  async delete(id: string): Promise<Order> {
-      try {
-    const sql = 'DELETE FROM orders WHERE id=($1)'
-    // @ts-ignore
-    const conn = await client.connect()
-
-    const result = await conn.query(sql, [id])
-
-    const book = result.rows[0]
-
-    conn.release()
-
-    return book
-      } catch (err) {
-          throw new Error(`Could not delete order ${id}. Error: ${err}`)
-      }
-  }
 }
