@@ -52,3 +52,39 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+
+# Project setup instructions
+
+## Package Installation Instructions
+
+Clone down the repository and run `npm install` in the main directory of project to get started.
+
+Then you can run `yarn watch` to start up the server on localhost:3000
+
+## How to Setup and Connect to the Database
+Enter `psql` from terminal window
+
+Enter `CREATE DATABASE storefront_backend_dev;` from terminal window
+
+Enter `CREATE USER myuser with encrypted password 'XXX';` with a username and password of your choice
+
+Enter `grant all privileges on database storefront_backend_dev to myuser;`
+
+Enter `CREATE DATABASE storefront_backend_test;` from terminal window
+
+Enter `grant all privileges on database storefront_backend_test to myuser;` with your username
+
+Run `db-migrate up` from terminal
+
+Then create a `.env` file that contains your env variables including your username and password
+
+```
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=storefront_backend_dev
+POSTGRES_TEST_DB=storefront_backend_test
+POSTGRES_USER=XXXX
+POSTGRES_PASSWORD=XXXX
+BCRYPT_PASSWORD=XXXX
+SALT_ROUNDS=10
+ENV=dev
+``
