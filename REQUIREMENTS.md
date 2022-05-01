@@ -40,5 +40,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+#### Database Schema
 
 ![image](https://user-images.githubusercontent.com/940055/166163985-a57b2930-d756-4e9e-b474-b4c8c201b18d.png)
