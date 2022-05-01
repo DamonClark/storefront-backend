@@ -38,18 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var user_1 = require("../models/user");
 var usergroup = new user_1.UserGroup();
-var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var users;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, usergroup.index()];
-            case 1:
-                users = _a.sent();
-                res.json(users);
-                return [2 /*return*/];
-        }
-    });
-}); };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var user;
     return __generator(this, function (_a) {
@@ -62,48 +50,22 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
-var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, newUser, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                user = {
-                    id: req.body.id,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    password_digest: req.body.password_digest
-                };
-                return [4 /*yield*/, usergroup.create(user)];
-            case 1:
-                newUser = _a.sent();
-                res.json(newUser);
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                res.status(400);
-                res.json(err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var deleted;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, usergroup["delete"](req.body.id)];
-            case 1:
-                deleted = _a.sent();
-                res.json(deleted);
-                return [2 /*return*/];
-        }
-    });
-}); };
+// const create = async (req: Request, res: Response) => {
+//   try {
+//       const user: User = {
+//           id: req.body.id,
+//           first_name: req.body.first_name,
+//           last_name: req.body.last_name,
+// 					password_digest: req.body.password_digest,
+//       }
+//       const newUser = await usergroup.create(user)
+//       res.json(newUser)
+//   } catch(err) {
+//       res.status(400)
+//       res.json(err)
+//   }
+// }
 var userRoutes = function (app) {
-    app.get('/users', index);
     app.get('/users/:id', show);
-    app.post('/users', create);
-    app["delete"]('/users', destroy);
 };
 exports["default"] = userRoutes;

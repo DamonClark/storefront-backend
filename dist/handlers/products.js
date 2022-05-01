@@ -87,22 +87,9 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
         }
     });
 }); };
-var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var deleted;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, store["delete"](req.body.id)];
-            case 1:
-                deleted = _a.sent();
-                res.json(deleted);
-                return [2 /*return*/];
-        }
-    });
-}); };
 var productRoutes = function (app) {
     app.get('/products', index);
     app.get('/products/:id', show);
     app.post('/products', create);
-    app["delete"]('/products', destroy);
 };
 exports["default"] = productRoutes;
