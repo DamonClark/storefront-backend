@@ -59,7 +59,7 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 
 Clone down the repository and run `npm install` in the main directory of project to get started.
 
-Then you can run `yarn watch` to start up the server on localhost:3000
+Run `yarn watch` to start up the server on localhost:3000
 
 ## How to Setup and Connect to the Database
 Enter `psql` from terminal window
@@ -87,4 +87,4 @@ POSTGRES_PASSWORD=XXXX
 BCRYPT_PASSWORD=XXXX
 SALT_ROUNDS=10
 ENV=dev
-``
+```
