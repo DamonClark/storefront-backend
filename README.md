@@ -6,10 +6,10 @@
 
 Clone down the repository and run `npm install` in the main directory of project to get started.
 
-Run `yarn watch` to start up the server on localhost:3000
+Run `yarn watch` to start up the server on port `3000`
 
 ## How to Setup and Connect to the Database
-Enter `psql` from terminal window
+Enter `psql` from terminal window 
 
 Enter `CREATE DATABASE storefront_backend_dev;` from terminal window
 
