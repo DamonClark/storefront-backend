@@ -9,6 +9,10 @@ Clone down the repository and run `npm install` in the main directory of project
 Run `yarn watch` to start up the server on port `3000`
 
 ## How to Setup and Connect to the Database
+
+The database runs on port number 5432 but the database isn't created until below instructions are followed.
+The server will be configured after configuring `.env` file.
+
 Enter `psql` from terminal window 
 
 Enter `CREATE DATABASE storefront_backend_dev;` from terminal window
