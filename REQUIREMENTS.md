@@ -5,19 +5,19 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
+- Index | GET 
+- Show | SHOW
+- Create [token required] | NEW
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required] | GET
+- Show [token required] | SHOW
+- Create N[token required] | NEW
 
 #### Orders
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] | GET
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
@@ -40,3 +40,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+#### Database Schema
+
+![image](https://user-images.githubusercontent.com/940055/168612637-c2adbd8d-82e2-4eb9-823c-51fd981b0d36.png)
