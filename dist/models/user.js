@@ -43,12 +43,38 @@ exports.UserGroup = void 0;
 // @ts-ignore
 var database_1 = __importDefault(require("../database"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
+var pepper = process.env.BCRYPT_PASSWORD;
+var saltRounds = process.env.SALT_ROUNDS;
 var UserGroup = /** @class */ (function () {
     function UserGroup() {
     }
+    UserGroup.prototype.index = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, result, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        conn = _a.sent();
+                        sql = 'SELECT * FROM users';
+                        return [4 /*yield*/, conn.query(sql)];
+                    case 2:
+                        result = _a.sent();
+                        conn.release();
+                        return [2 /*return*/, result.rows];
+                    case 3:
+                        err_1 = _a.sent();
+                        throw new Error("Could not get users. Error: ".concat(err_1));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     UserGroup.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, err_1;
+            var sql, conn, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -63,8 +89,34 @@ var UserGroup = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        err_1 = _a.sent();
-                        throw new Error("Could not find user ".concat(id, ". Error: ").concat(err_1));
+                        err_2 = _a.sent();
+                        throw new Error("Could not find user ".concat(id, ". Error: ").concat(err_2));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    UserGroup.prototype.create = function (u) {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, hash, result, user, err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        conn = _a.sent();
+                        sql = 'INSERT INTO users (username, first_name, last_name, password_digest) VALUES($1, $2, $3, $4) RETURNING *';
+                        hash = bcrypt_1["default"].hashSync(u.password_digest + pepper, parseInt(saltRounds));
+                        return [4 /*yield*/, conn.query(sql, [u.username, u.first_name, u.last_name, hash])];
+                    case 2:
+                        result = _a.sent();
+                        user = result.rows[0];
+                        conn.release();
+                        return [2 /*return*/, user];
+                    case 3:
+                        err_3 = _a.sent();
+                        throw new Error("unable create user (".concat(u.username, "): ").concat(err_3));
                     case 4: return [2 /*return*/];
                 }
             });
@@ -72,7 +124,7 @@ var UserGroup = /** @class */ (function () {
     };
     UserGroup.prototype.authenticate = function (username, password) {
         return __awaiter(this, void 0, void 0, function () {
-            var client, conn, sql, result, pepper, user;
+            var client, conn, sql, result, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, client.connect()];
@@ -82,7 +134,6 @@ var UserGroup = /** @class */ (function () {
                         return [4 /*yield*/, conn.query(sql, [username])];
                     case 2:
                         result = _a.sent();
-                        pepper = process.env.BCRYPT_PASSWORD;
                         console.log(password + pepper);
                         if (result.rows.length) {
                             user = result.rows[0];
