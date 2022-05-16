@@ -42,4 +42,4 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Database Schema
 
-![image](https://user-images.githubusercontent.com/940055/167155409-74c709c3-3921-4df0-a793-2e33e94e7a66.png)
+![image](https://user-images.githubusercontent.com/940055/168612637-c2adbd8d-82e2-4eb9-823c-51fd981b0d36.png)
