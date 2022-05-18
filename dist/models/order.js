@@ -45,33 +45,9 @@ var database_1 = __importDefault(require("../database"));
 var OrderList = /** @class */ (function () {
     function OrderList() {
     }
-    OrderList.prototype.index = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, err_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1["default"].connect()];
-                    case 1:
-                        conn = _a.sent();
-                        sql = 'SELECT * FROM orders';
-                        return [4 /*yield*/, conn.query(sql)];
-                    case 2:
-                        result = _a.sent();
-                        conn.release();
-                        return [2 /*return*/, result.rows];
-                    case 3:
-                        err_1 = _a.sent();
-                        throw new Error("Could not get orders. Error: ".concat(err_1));
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
     OrderList.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, err_2;
+            var sql, conn, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -86,34 +62,8 @@ var OrderList = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        err_2 = _a.sent();
-                        throw new Error("Could not find order ".concat(id, ". Error: ").concat(err_2));
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    OrderList.prototype.create = function (o) {
-        return __awaiter(this, void 0, void 0, function () {
-            var sql, conn, result, order, err_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        sql = 'INSERT INTO orders (quantity, status) VALUES($1, $2) RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
-                    case 1:
-                        conn = _a.sent();
-                        return [4 /*yield*/, conn
-                                .query(sql, [o.quantity])];
-                    case 2:
-                        result = _a.sent();
-                        order = result.rows[0];
-                        conn.release();
-                        return [2 /*return*/, order];
-                    case 3:
-                        err_3 = _a.sent();
-                        throw new Error("Could not add new order ".concat(o.quantity, ". Error: ").concat(err_3));
+                        err_1 = _a.sent();
+                        throw new Error("Could not find order ".concat(id, ". Error: ").concat(err_1));
                     case 4: return [2 /*return*/];
                 }
             });

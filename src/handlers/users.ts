@@ -20,7 +20,7 @@ const create = async (req: Request, res: Response) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       username: req.body.username,
-      password: req.body.password,
+      password_digest: req.body.password_digest,
   }
   try {
       const newUser = await usergroup.create(user)
@@ -29,24 +29,6 @@ const create = async (req: Request, res: Response) => {
   } catch(err) {
       res.status(400)
       res.json(err + user)
-  }
-}
-
-const authenticate = async (req: Request, res: Response) => {
-  const user: User = {
-      id: req.body.id,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      username: req.body.username,
-      password: req.body.password,
-  }
-  try {
-      const u = await usergroup.authenticate(user.username, user.password)
-      var token = jwt.sign({ user: u }, process.env.TOKEN_SECRET as string);
-      res.json(token)
-  } catch(error) {
-      res.status(401)
-      res.json({ error })
   }
 }
 

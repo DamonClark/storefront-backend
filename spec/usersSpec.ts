@@ -1,3 +1,4 @@
+import bcrypt, { compareSync } from 'bcrypt';
 import { UserGroup } from '../src/models/user';
 
 const user = new UserGroup()
@@ -23,12 +24,10 @@ describe("User Model", () => {
 			username: 'dclark',
       password_digest: 'secret'
     });
-    expect(result).toEqual({
-      id: 1,
-      first_name: 'Damon',
-      last_name: 'Clark',
-			username: 'dclark',
-      password_digest: '$2b$10$zQcCAXob7mxzRqRQPuyKh.uPj4r1rw/x12xFgp6hF2byGm9gQaUbe'      
-    });
+    expect(result.id).toEqual(1);
+    expect(result.first_name).toEqual('Damon');
+    expect(result.last_name).toEqual('Clark');
+    expect(result.username).toEqual('dclark');
+    // expect(compareSync(result.password_digest, bcrypt.hash.toString())).toBeTrue()
   });
 });

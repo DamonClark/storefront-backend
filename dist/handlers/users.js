@@ -76,7 +76,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     username: req.body.username,
-                    password: req.body.password
+                    password_digest: req.body.password_digest
                 };
                 _a.label = 1;
             case 1:
@@ -91,36 +91,6 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 err_1 = _a.sent();
                 res.status(400);
                 res.json(err_1 + user);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); };
-var authenticate = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, u, token, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                user = {
-                    id: req.body.id,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    username: req.body.username,
-                    password: req.body.password
-                };
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, usergroup.authenticate(user.username, user.password)];
-            case 2:
-                u = _a.sent();
-                token = jsonwebtoken_1["default"].sign({ user: u }, process.env.TOKEN_SECRET);
-                res.json(token);
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                res.status(401);
-                res.json({ error: error_1 });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
