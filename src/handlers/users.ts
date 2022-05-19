@@ -5,13 +5,23 @@ import jwt from 'jsonwebtoken'
 const usergroup = new UserGroup()
 
 const index = async (_req: Request, res: Response) => {
-  const users = await usergroup.index()
-  res.json(users)
+  try {
+    const users = await usergroup.index()
+    res.json(users)
+  } catch(err) {
+    res.status(400)
+    res.json(err)
+  }
 }
 
 const show = async (req: Request, res: Response) => {
-   const user = await usergroup.show(req.body.id)
-   res.json(user)
+  try {
+    const user = await usergroup.show(req.body.id)
+    res.json(user)
+  } catch(err) {
+    res.status(400)
+    res.json(err)
+  }
 }
 
 const create = async (req: Request, res: Response) => {
