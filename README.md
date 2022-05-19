@@ -43,11 +43,17 @@ ENV=dev
 ## Restful Routes used in this application
 
 /products.    | index action  | GET
+
 /products/:id | show action   | GET
+
 /products     | create action | POST
+
 /orders/:id   | index action  | GET
+
 /users        | index action  | GET
+
 /users/:id    | index action  | GET
+
 /users        | create action | POST
 
 ## Getting Started
