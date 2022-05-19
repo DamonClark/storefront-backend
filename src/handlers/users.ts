@@ -38,7 +38,7 @@ const create = async (req: Request, res: Response) => {
       res.json(token)
   } catch(err) {
       res.status(400)
-      res.json(err + user)
+      res.json(err)
   }
 }
 

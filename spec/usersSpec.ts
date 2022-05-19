@@ -1,19 +1,23 @@
 import bcrypt, { compareSync } from 'bcrypt';
 import { UserGroup } from '../src/models/user';
+import app from '../src/server'; 
+import supertest from 'supertest';
 
 const user = new UserGroup()
+const request = supertest(app)
+
 
 describe("User Model", () => {
-  it('should have an index method', () => {
-    expect(user.index).toBeDefined();
+  it('should respond with 200 when passing index /users', async done => {
+    const response = await request.get('/users')
+    expect(response.statusCode).toBe(200);
+    done()
   });
 
-  it('should have an show method', () => {
-    expect(user.show).toBeDefined();
-  });
-
-  it('should have a create method', () => {
-    expect(user.create).toBeDefined();
+  it('should respond with 200 when passing show /users/1', async done => {
+    const response = await request.get('/users/1')
+    expect(response.statusCode).toBe(200);
+    done()
   });
 
   it('create method should add a user', async () => {

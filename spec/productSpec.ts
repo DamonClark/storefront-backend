@@ -1,18 +1,21 @@
 import { ProductStore } from '../src/models/product';
+import app from '../src/server'; 
+import supertest from 'supertest';
 
 const store = new ProductStore()
+const request = supertest(app)
 
 describe("Product Model", () => {
-  it('should have an index method', () => {
-    expect(store.index).toBeDefined();
+  it('should respond with 200 when passing index /product', async done => {
+    const response = await request.get('/products')
+    expect(response.statusCode).toBe(200);
+    done()
   });
 
-  it('should have an show method', () => {
-    expect(store.show).toBeDefined();
-  });
-
-  it('should have a create method', () => {
-    expect(store.create).toBeDefined();
+  it('should respond with 200 when passing show /product/1', async done => {
+    const response = await request.get('/products/1')
+    expect(response.statusCode).toBe(200);
+    done()
   });
 
   it('create method should add a product', async () => {
