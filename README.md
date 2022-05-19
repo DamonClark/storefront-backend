@@ -40,6 +40,22 @@ SALT_ROUNDS=10
 ENV=dev
 ```
 
+## Restful Routes used in this application
+
+/products.    | index action  | GET
+
+/products/:id | show action   | GET
+
+/products     | create action | POST
+
+/orders/:id   | index action  | GET
+
+/users        | index action  | GET
+
+/users/:id    | index action  | GET
+
+/users        | create action | POST
+
 ## Getting Started
 
 This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
