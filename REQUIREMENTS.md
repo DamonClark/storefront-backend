@@ -42,4 +42,5 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Database Schema
 
-![image](https://user-images.githubusercontent.com/940055/168612637-c2adbd8d-82e2-4eb9-823c-51fd981b0d36.png)
+<img width="1028" alt="Untitled 2" src="https://user-images.githubusercontent.com/940055/169290688-87233e97-5738-4457-9ecc-1d7641fdeb4f.png">
+
