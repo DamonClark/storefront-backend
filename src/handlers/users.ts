@@ -4,6 +4,17 @@ import jwt from 'jsonwebtoken'
 
 const usergroup = new UserGroup()
 
+const verifyAuthToken = (req: Request, res: Response, next: () => void) => {
+  try {
+      const authorizationHeader: any= req.headers.authorization
+      const token = authorizationHeader.split(' ')[1]
+      const decoded = jwt.verify(token, process.env.TOKEN_SECRET as string)
+      next()
+  } catch (error) {
+      res.status(401)
+  }
+}
+
 const index = async (_req: Request, res: Response) => {
   try {
     const users = await usergroup.index()
@@ -32,6 +43,7 @@ const create = async (req: Request, res: Response) => {
       username: req.body.username,
       password_digest: req.body.password_digest,
   }
+
   try {
       const newUser = await usergroup.create(user)
       var token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET as string);
@@ -43,9 +55,9 @@ const create = async (req: Request, res: Response) => {
 }
 
 const userRoutes = (app: express.Application) => {
-  app.get('/users', index)
-  app.get('/users/:id', show),
-  app.post('/users', create)
+  app.get('/users', verifyAuthToken, index)
+  app.get('/users/:id', verifyAuthToken, show)
+  app.post('/users', verifyAuthToken, create)
 }
 
 export default userRoutes
