@@ -6,8 +6,8 @@ const usergroup = new UserGroup()
 
 const verifyAuthToken = (req: Request, res: Response, next: () => void) => {
   try {
-      const authorizationHeader: any= req.headers.authorization
-      const token = authorizationHeader.split(' ')[1]
+      const authorizationHeader = req.headers.authorization
+      const token = authorizationHeader!.split(' ')[1]
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET as string)
       next()
   } catch (error) {
@@ -57,7 +57,7 @@ const create = async (req: Request, res: Response) => {
 const userRoutes = (app: express.Application) => {
   app.get('/users', verifyAuthToken, index)
   app.get('/users/:id', verifyAuthToken, show)
-  app.post('/users', verifyAuthToken, create)
+  app.post('/users', create)
 }
 
 export default userRoutes

@@ -35,22 +35,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 var order_1 = require("../models/order");
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var orderlist = new order_1.OrderList();
+var verifyAuthToken = function (req, res, next) {
+    try {
+        var authorizationHeader = req.headers.authorization;
+        var token = authorizationHeader.split(' ')[1];
+        console.log(token);
+        var decoded = jsonwebtoken_1["default"].verify(token, process.env.TOKEN_SECRET);
+        next();
+    }
+    catch (error) {
+        res.status(401);
+    }
+};
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var order;
+    var order, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, orderlist.show(req.body.id)];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, orderlist.show(req.body.id)];
             case 1:
                 order = _a.sent();
                 res.json(order);
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                res.status(400);
+                res.json(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
 var orderRoutes = function (app) {
-    app.get('/orders/:id', show);
+    app.get('/orders/:id', verifyAuthToken, show);
 };
 exports["default"] = orderRoutes;
