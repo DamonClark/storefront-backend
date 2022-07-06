@@ -11,7 +11,7 @@ const verifyAuthToken = (req: Request, res: Response, next: () => void) => {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET as string)
       next()
   } catch (error) {
-      res.status(401)
+      res.status(401).send()
   }
 }
 
