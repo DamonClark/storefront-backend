@@ -10,13 +10,13 @@ const product = new ProductStore()
 const request = supertest(app)
 
 describe("Order Model", () => {
-  beforeAll(() => {
-    product.create({
+  beforeAll(async () => {
+    await product.create({
       id: 1,
       name: 'Crockpot',
       price: '39.00'
     });
-    user.create({
+    await user.create({
       id: 1,
       first_name: 'Damon',
       last_name: 'Clark',
