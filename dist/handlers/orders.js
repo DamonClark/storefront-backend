@@ -46,12 +46,11 @@ var verifyAuthToken = function (req, res, next) {
     try {
         var authorizationHeader = req.headers.authorization;
         var token = authorizationHeader.split(' ')[1];
-        console.log(token);
         var decoded = jsonwebtoken_1["default"].verify(token, process.env.TOKEN_SECRET);
         next();
     }
     catch (error) {
-        res.status(401);
+        res.status(401).send();
     }
 };
 var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
