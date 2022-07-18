@@ -27,11 +27,13 @@ describe("User Model", () => {
   });
 
   it('index method for user', async () => {
-    await user.index();
+    const result = await user.index();
+    expect(result).toBeTrue();
   });
 
   it('show method for user', async () => {
-    await user.show('1');
+    const result = await user.show('1');
+    expect(result.id).toEqual(1);
   });
 
   it('should respond with 200 when passing index /users', async done => {

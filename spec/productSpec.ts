@@ -38,11 +38,13 @@ describe("Product Model", () => {
   });
 
   it('index method for product', async () => {
-    await store.index();
+    const result = await store.index();
+    expect(result).toBeTrue();
   });
 
   it('show method for product', async () => {
-    await store.show('2');
+    const result = await store.show('2');
+    expect(result.id).toEqual(2);
   });
 
   it('create method should add a product', async () => {

@@ -31,7 +31,9 @@ describe("Order Model", () => {
   });
 
   it('show method for order', async () => {
-    await order.show('1');
+    const result = await order.show('1');
+    expect(result.id).toEqual(1);
+
   });
 
   it('should respond with 200 when passing show /orders/1', async done => {
